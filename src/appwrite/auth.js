@@ -10,7 +10,7 @@ export class AuthService {
   constructor(){
     this.client
         .setEndpoint(config.appwriteUrl)
-        .setEndpoint(config.appwriteProjectId);
+        .setProject(config.appwriteProjectId);
     
     this.account = new Account(this.client)
   }
@@ -39,7 +39,7 @@ export class AuthService {
     }
   }
 
-  async currentUser(){
+  async getcurrentUser(){
     try {
       return await this.account.get()
     } 
