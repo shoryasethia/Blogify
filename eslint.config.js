@@ -24,6 +24,8 @@ export default defineConfig([
     },
     rules: {
       'no-unused-vars': 'off',
+      'no-useless-catch': 'off',
+      'no-empty':'off',
     },
   },
 ])

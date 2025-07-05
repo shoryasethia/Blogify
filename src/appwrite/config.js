@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-catch */
-
-
 import config from "../config/config";
 import { Client, Databases, Storage, Query, ID } from "appwrite";
 
@@ -131,7 +128,7 @@ export class Service{
   }
 }
 
-const service = new Service()
+const appwriteService = new Service()
 
-export default service
+export default appwriteService
 
