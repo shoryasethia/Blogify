@@ -1,21 +1,21 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import {useDispatch} from 'react-redux'
 import authService from '../../appwrite/auth'
-import logout from '../../store/authSlice'
+import {logout} from '../../store/authSlice'
 
-export function LogoutBtn() {
-  const dispatch = useDispatch()
-  const logoutHandler = () => {
-    authService.logout()
-    .then(() => {
-      dispatch(logout())
-    })
-  }
-
+function LogoutBtn() {
+    const dispatch = useDispatch()
+    const logoutHandler = () => {
+        authService.logout().then(() => {
+            dispatch(logout())
+        })
+    }
   return (
-    <>
-      <button className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 round-full'>Logout</button>
-    </>
+    <button
+    className='px-4 py-2 text-gray-300 hover:text-white hover:bg-red-600 bg-red-700 rounded-lg transition-all duration-200 font-medium'
+    onClick={logoutHandler}
+    >Logout</button>
   )
 }
+
+export default LogoutBtn

@@ -18,7 +18,7 @@ function Signup() {
             const userData = await authService.createAccount(data)
             if (userData) {
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(login(userData));
+                if(userData) dispatch(login({userData}));
                 navigate("/")
             }
         } catch (error) {
@@ -27,26 +27,25 @@ function Signup() {
     }
 
   return (
-    <div className="flex items-center justify-center">
-            <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+    <div className="flex items-center justify-center w-full">
+            <div className={`mx-auto w-full max-w-lg bg-gray-800 rounded-xl p-10 border border-gray-700 shadow-xl`}>
             <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
                     </span>
                 </div>
-                <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-                <p className="mt-2 text-center text-base text-black/60">
+                <h2 className="text-center text-2xl font-bold leading-tight text-white">Sign up to create account</h2>
+                <p className="mt-2 text-center text-base text-gray-400">
                     Already have an account?&nbsp;
                     <Link
                         to="/login"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                        className="font-medium text-blue-400 transition-all duration-200 hover:text-blue-300 hover:underline"
                     >
                         Sign In
                     </Link>
                 </p>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-
-                <form onSubmit={handleSubmit(create)}>
+                {error && <p className="text-red-400 mt-8 text-center">{error}</p>}
+                <form onSubmit={handleSubmit(create)} className='mt-8'>
                     <div className='space-y-5'>
                         <Input
                         label="Full Name: "
@@ -79,6 +78,19 @@ function Signup() {
                         </Button>
                     </div>
                 </form>
+                
+                {/* Additional login link at bottom for consistency */}
+                <div className="mt-6 pt-6 border-t border-gray-600 text-center">
+                    <p className="text-gray-400 text-sm">
+                        Already have an account?{' '}
+                        <Link
+                            to="/login"
+                            className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                            Sign in here
+                        </Link>
+                    </p>
+                </div>
             </div>
 
     </div>

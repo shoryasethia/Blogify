@@ -1,12 +1,15 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
+import logoImage from '../assets/images/logo.png'
 
-export function Logo({width = '100px'}) {
-  
-
+export default function Logo({width = '100px'}) {
   return (
-    <>
-      <div> Logo </div>
-    </>
+    <div className="flex items-center">
+      <img 
+        src={logoImage} 
+        alt="Blogify Logo" 
+        style={{width}}
+        className="object-contain"
+      />
+    </div>
   )
 }

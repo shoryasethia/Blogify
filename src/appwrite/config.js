@@ -15,12 +15,12 @@ export class Service{
     this.bucket = new Storage(this.client)
   }
 
-  async createPost({title,slug,content,featuredImage,status,userId}){
+  async createPost({title,content,featuredImage,status,userId}){
     try {
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
-        slug, 
+        ID.unique(), // Use auto-generated ID instead of slug
         {
           title,
           content,
@@ -31,16 +31,17 @@ export class Service{
       )
     } 
     catch (error) {
+      console.error("Appwrite service :: createPost :: error", error);
       throw error
     }
   }
 
-  async updatePost({title,slug,content,featuredImage,status}){
+  async updatePost(documentId, {title,content,featuredImage,status}){
     try {
       return await this.databases.updateDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
-        slug,
+        documentId,
         {
           title,
           content,
@@ -50,6 +51,7 @@ export class Service{
       )
     } 
     catch (error) {
+      console.error("Appwrite service :: updatePost :: error", error);
       throw error
     }
   }
@@ -70,13 +72,14 @@ export class Service{
 
   async getPost(slug){
     try {
-      return await this.databases.listDocuments(
+      return await this.databases.getDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
         slug
       )
     } 
     catch (error) {
+      console.error("Appwrite service :: getPost :: error", error);
       throw error
     }
   }
@@ -96,14 +99,15 @@ export class Service{
 
   async uploadFile(file){
     try {
-      return await this.bucket.createFile(
+      const result = await this.bucket.createFile(
         config.appwriteBucketId,
         ID.unique(),
-        file,
-
-      )
+        file
+      );
+      return result;
     } 
     catch (error) {
+      console.error("Appwrite service :: uploadFile :: error", error);
       throw error
     }
   }
@@ -116,15 +120,30 @@ export class Service{
       )
     } 
     catch (error) {
-      throw error
+      console.error("Appwrite service :: deleteFile :: error", error);
+      return false; // Don't throw on delete errors, just return false
     }
   }
 
-  async getFilePreview(fileId){
-    return await this.bucket.getFilePreview(
+  getFilePreview(fileId){
+    return this.bucket.getFilePreview(
       config.appwriteBucketId,
       fileId
-    )
+    );
+  }
+
+  getFileDownload(fileId){
+    return this.bucket.getFileDownload(
+      config.appwriteBucketId,
+      fileId
+    );
+  }
+
+  getFileView(fileId){
+    return this.bucket.getFileView(
+      config.appwriteBucketId,
+      fileId
+    );
   }
 }
 
