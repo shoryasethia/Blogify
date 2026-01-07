@@ -1,6 +1,6 @@
 # Blogify - Your Voice, Your Platform
 
-![Blogify Logo](src/assets/images/logo.png)
+<img src="src/assets/images/logo.png" alt="Blogify Logo" width="300"/>
 
 *"Where stories come to life and ideas find their home"*
 
@@ -8,7 +8,7 @@
 
 [![Visit Live Site](https://img.shields.io/badge/Visit-Live%20Site-blue?style=for-the-badge&logo=vercel&logoColor=white)](https://blogify-nine-green.vercel.app/)
 
-Blogify is a sophisticated, blog website built using Vite, Redux Toolkit, React, Appwrite and TinyMCE. This modern blogging platform combines powerful features with elegant design to deliver a professional content creation experience for writers, bloggers, and storytellers.
+Blogify is a sophisticated, blog website built using Vite, Redux Toolkit, React, Appwrite and TinyMCE. This modern blogging platform combines powerful features with elegant design to deliver a professional blogging experience that empowers creators to share their stories with the world.
 
 
 ---
